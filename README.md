@@ -90,8 +90,8 @@ To wire a real backend, replace `sendChatMessage` in `src/services/chatService.t
 ## Screenshots
 
 ![Enterprise RAG - Screenshot 1](/public/Image%2003-02-26%20at%2012.49%20AM.jpg)
-![Enterprise RAG - Screenshot 2](/Image%2003-02-26%20at%2012.49%20AM%20(1).jpg)
-![Enterprise RAG - Screenshot 3](/Image%2003-02-26%20at%2012.50%20AM.jpg)
-![Enterprise RAG - Screenshot 4](/Image%2003-02-26%20at%2012.51%20AM.jpg)
-![Enterprise RAG - Screenshot 5](/Image%2003-02-26%20at%2012.52%20AM.jpg)
-![Enterprise RAG - Screenshot 6](/Image%2003-02-26%20at%2012.52%20AM%20(1).jpg)
+![Enterprise RAG - Screenshot 2](/public/Image%2003-02-26%20at%2012.49%20AM%20(1).jpg)
+![Enterprise RAG - Screenshot 3](/public/Image%2003-02-26%20at%2012.50%20AM.jpg)
+![Enterprise RAG - Screenshot 4](/public/Image%2003-02-26%20at%2012.51%20AM.jpg)
+![Enterprise RAG - Screenshot 5](/public/Image%2003-02-26%20at%2012.52%20AM.jpg)
+![Enterprise RAG - Screenshot 6](/public/Image%2003-02-26%20at%2012.52%20AM%20(1).jpg)
