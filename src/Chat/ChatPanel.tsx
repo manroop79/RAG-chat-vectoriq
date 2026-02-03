@@ -68,21 +68,21 @@ export const ChatPanel = ({
     >
       {isEmpty ? (
         <motion.div
-          className="bg-slate-950/40 px-6 py-8"
+          className="bg-slate-950/40 px-4 py-4 sm:px-6 sm:py-6"
           variants={introVariants}
           initial={prefersReducedMotion ? false : 'hidden'}
           animate={prefersReducedMotion ? false : 'visible'}
         >
           <motion.div
-            className="max-w-2xl rounded-2xl border border-slate-800/70 bg-slate-950/60 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+            className="max-w-2xl rounded-2xl border border-slate-800/70 bg-slate-950/60 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.35)] sm:p-5"
             variants={introItem}
           >
             <motion.div className="flex items-start justify-between gap-6" variants={introItem}>
               <div className="space-y-2">
-                <p className="text-base font-semibold text-slate-100">
+                <p className="text-sm font-semibold text-slate-100 sm:text-base">
                   Ask me about internal documents
                 </p>
-                <p className="text-sm text-slate-400">
+                <p className="text-xs text-slate-400 sm:text-sm">
                   I’ll answer using internal documentation and show you citations.
                 </p>
               </div>
@@ -90,17 +90,17 @@ export const ChatPanel = ({
                 RAG Assistant
               </span>
             </motion.div>
-            <motion.div className="mt-4" variants={introItem}>
+            <motion.div className="mt-3" variants={introItem}>
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 You can ask questions like:
               </p>
-              <ul className="mt-3 space-y-1 text-sm text-slate-300">
+              <ul className="mt-2 space-y-1 text-xs text-slate-300 sm:text-sm">
                 <li>“What is the password rotation policy?”</li>
                 <li>“How do we handle security incidents?”</li>
                 <li>“What is the PTO policy?”</li>
               </ul>
             </motion.div>
-            <motion.div className="mt-4 flex flex-wrap gap-2" variants={introItem}>
+            <motion.div className="mt-3 flex flex-wrap gap-2" variants={introItem}>
               {suggestions.map((prompt) => (
                 <button
                   key={prompt}
@@ -109,7 +109,7 @@ export const ChatPanel = ({
                     setDraft(prompt)
                     inputRef.current?.focus()
                   }}
-                  className="cursor-pointer rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-xs text-slate-300 transition hover:border-cyan-400/60 hover:bg-cyan-500/10 hover:text-cyan-100"
+                  className="cursor-pointer rounded-full border border-slate-800 bg-slate-900/80 px-2.5 py-1 text-[11px] text-slate-300 transition hover:border-cyan-400/60 hover:bg-cyan-500/10 hover:text-cyan-100 sm:px-3 sm:text-xs"
                 >
                   {prompt}
                 </button>

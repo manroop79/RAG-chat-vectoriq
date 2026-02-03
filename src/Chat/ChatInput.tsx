@@ -20,7 +20,7 @@ export const ChatInput = ({
   isSendDisabled,
   inputRef,
 }: ChatInputProps) => (
-  <div className="bg-slate-950/60 px-6 py-4">
+  <div className="bg-slate-950/60 px-4 py-3 sm:px-6 sm:py-4">
     <div className="mb-2 flex items-center gap-2 text-xs text-slate-400">
       <span
         className={`inline-flex h-2 w-2 rounded-full ${
@@ -47,7 +47,7 @@ export const ChatInput = ({
         }}
         rows={2}
         placeholder='Try: "What are the MFA requirements?"'
-        className="flex-1 resize-none rounded-xl border border-slate-800/70 bg-slate-950/80 px-4 py-3 text-sm text-slate-100 shadow-[0_12px_24px_rgba(0,0,0,0.35)] placeholder:text-slate-500 focus:border-cyan-400/70 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 disabled:text-slate-500"
+        className="flex-1 resize-none rounded-xl border border-slate-800/70 bg-slate-950/80 px-4 py-3 text-base text-slate-100 shadow-[0_12px_24px_rgba(0,0,0,0.35)] placeholder:text-slate-500 focus:border-cyan-400/70 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 disabled:text-slate-500 sm:text-sm"
       />
       <Button variant="primary" onClick={onSend} disabled={isSendDisabled || disabled}>
         {isLoading ? 'Sending…' : 'Send'}
