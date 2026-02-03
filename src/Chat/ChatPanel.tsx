@@ -100,7 +100,7 @@ export const ChatPanel = ({
                 <li>“What is the PTO policy?”</li>
               </ul>
             </motion.div>
-            <motion.div className="mt-3 flex flex-col gap-2 xl:mt-2" variants={introItem}>
+            <motion.div className="mt-3 flex flex-col gap-2 xl:mt-8" variants={introItem}>
               {suggestions.map((prompt) => (
                 <button
                   key={prompt}
