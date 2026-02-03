@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useMemo } from 'react'
 import { ChatPanel } from '../../Chat/ChatPanel'
 import { ConversationSidebar } from '../../components/ConversationSidebar'
@@ -27,38 +28,50 @@ export const ChatShell = ({ isSidebarOpen, onCloseSidebar }: ChatShellProps) => 
 
   return (
     <div className="flex h-full flex-1 min-h-0 flex-col lg:flex-row">
-      {isSidebarOpen ? (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-30">
-            <div
-              className="absolute inset-y-0 right-0 w-[25vw] bg-slate-950/95"
-              role="button"
-              tabIndex={-1}
-              aria-label="Close conversation drawer"
-              onClick={onCloseSidebar}
-              onKeyDown={(event) => {
-                if (event.key === 'Escape') onCloseSidebar()
-              }}
-            />
-            <div className="absolute inset-y-0 left-0 w-[75vw] border-r border-slate-800/70 bg-slate-950/98 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
-              <ConversationSidebar
-                conversations={conversations}
-                activeConversationId={activeConversationId}
-                onSelect={(conversationId) => {
-                  switchConversation(conversationId)
-                  onCloseSidebar()
+      <AnimatePresence>
+        {isSidebarOpen ? (
+          <div className="lg:hidden">
+            <div className="fixed inset-0 z-30">
+              <motion.div
+                className="absolute inset-y-0 right-0 w-[25vw] bg-slate-950/95"
+                role="button"
+                tabIndex={-1}
+                aria-label="Close conversation drawer"
+                onClick={onCloseSidebar}
+                onKeyDown={(event) => {
+                  if (event.key === 'Escape') onCloseSidebar()
                 }}
-                onNewChat={() => {
-                  newChat()
-                  onCloseSidebar()
-                }}
-                variant="sidebar"
-                className="h-full w-full bg-transparent"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: 'easeOut', delay: 0.08 }}
               />
+              <motion.div
+                className="absolute inset-y-0 left-0 w-[75vw] border-r border-slate-800/70 bg-slate-950/98 shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ type: 'spring', stiffness: 210, damping: 30 }}
+              >
+                <ConversationSidebar
+                  conversations={conversations}
+                  activeConversationId={activeConversationId}
+                  onSelect={(conversationId) => {
+                    switchConversation(conversationId)
+                    onCloseSidebar()
+                  }}
+                  onNewChat={() => {
+                    newChat()
+                    onCloseSidebar()
+                  }}
+                  variant="sidebar"
+                  className="h-full w-full bg-transparent"
+                />
+              </motion.div>
             </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </AnimatePresence>
       <div className="hidden h-full lg:block">
         <ConversationSidebar
           conversations={conversations}

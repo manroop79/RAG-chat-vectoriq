@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { AppHeader } from '../components/AppHeader'
 import { ChatShell } from '../features/chat/ChatShell'
@@ -11,9 +12,9 @@ export const AppShell = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-screen flex-col bg-slate-950 text-slate-100">
+    <div className="flex h-[100dvh] flex-col bg-slate-950 text-slate-100">
       <AppHeader onMenuClick={() => setIsSidebarOpen(true)} />
-      <div className="flex flex-1 overflow-hidden px-4 pb-6 pt-4 lg:px-8">
+      <div className="flex min-h-0 flex-1 overflow-hidden px-4 lg:px-8">
         {viewer.isOpen ? (
           <div
             className="fixed inset-0 z-10 hidden bg-slate-950/85 lg:block"
@@ -26,7 +27,7 @@ export const AppShell = () => {
             }}
           />
         ) : null}
-        <div className="mx-auto flex h-full w-full max-w-[1440px] overflow-hidden rounded-2xl border border-slate-800/70 bg-gradient-to-br from-slate-950/80 via-slate-950/40 to-slate-900/40 shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
+        <div className="mx-auto flex min-h-0 w-full max-w-none overflow-hidden rounded-2xl border border-slate-800/70 bg-gradient-to-br from-slate-950/80 via-slate-950/40 to-slate-900/40 shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
           <ChatShell
             isSidebarOpen={isSidebarOpen}
             onOpenSidebar={() => setIsSidebarOpen(true)}
@@ -43,27 +44,33 @@ export const AppShell = () => {
           </div>
         </div>
       </div>
-      {viewer.isOpen ? (
-        <div className="lg:hidden">
-          <div
-            className="fixed inset-y-0 left-0 z-10 w-[25vw] bg-slate-950/95"
-            role="button"
-            tabIndex={-1}
-            aria-label="Close document viewer"
-            onClick={closeViewer}
-            onKeyDown={(event) => {
-              if (event.key === 'Escape') closeViewer()
-            }}
-          />
-          <DocumentViewer
-            isOpen={viewer.isOpen}
-            citations={viewer.citations}
-            selectedCitationId={viewer.selectedCitationId}
-            onClose={closeViewer}
-            onSelectCitation={selectCitation}
-          />
-        </div>
-      ) : null}
+      <div className="lg:hidden">
+        <AnimatePresence>
+          {viewer.isOpen ? (
+            <motion.div
+              className="fixed inset-y-0 left-0 z-10 w-[25vw] bg-slate-950/95"
+              role="button"
+              tabIndex={-1}
+              aria-label="Close document viewer"
+              onClick={closeViewer}
+              onKeyDown={(event) => {
+                if (event.key === 'Escape') closeViewer()
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut', delay: 0.08 }}
+            />
+          ) : null}
+        </AnimatePresence>
+        <DocumentViewer
+          isOpen={viewer.isOpen}
+          citations={viewer.citations}
+          selectedCitationId={viewer.selectedCitationId}
+          onClose={closeViewer}
+          onSelectCitation={selectCitation}
+        />
+      </div>
     </div>
   )
 }
