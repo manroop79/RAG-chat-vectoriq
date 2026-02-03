@@ -68,13 +68,13 @@ export const ChatPanel = ({
     >
       {isEmpty ? (
         <motion.div
-          className="bg-slate-950/40 px-4 py-4 sm:px-6 sm:py-6"
+          className="bg-slate-950/40 px-4 py-3 sm:px-6 sm:py-4"
           variants={introVariants}
           initial={prefersReducedMotion ? false : 'hidden'}
           animate={prefersReducedMotion ? false : 'visible'}
         >
           <motion.div
-            className="max-w-2xl rounded-2xl border border-slate-800/70 bg-slate-950/60 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.35)] sm:p-5"
+            className="max-w-2xl rounded-2xl border border-slate-800/70 bg-slate-950/60 p-3 shadow-[0_12px_32px_rgba(0,0,0,0.3)] sm:p-4"
             variants={introItem}
           >
             <motion.div className="flex items-start justify-between gap-6" variants={introItem}>
@@ -100,7 +100,7 @@ export const ChatPanel = ({
                 <li>“What is the PTO policy?”</li>
               </ul>
             </motion.div>
-            <motion.div className="mt-3 flex flex-wrap gap-2" variants={introItem}>
+            <motion.div className="mt-3 grid grid-cols-2 gap-2" variants={introItem}>
               {suggestions.map((prompt) => (
                 <button
                   key={prompt}
