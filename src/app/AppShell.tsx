@@ -12,7 +12,7 @@ export const AppShell = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-full flex-col bg-slate-950 text-slate-100">
+    <div className="flex h-full min-h-[100svh] flex-col overflow-hidden bg-slate-950 text-slate-100">
       <AppHeader onMenuClick={() => setIsSidebarOpen(true)} />
       <div className="flex min-h-0 flex-1 overflow-hidden px-4 lg:px-8">
         {viewer.isOpen ? (
