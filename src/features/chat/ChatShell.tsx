@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useMemo } from 'react'
 import { ChatPanel } from '../../Chat/ChatPanel'
 import { ConversationSidebar } from '../../components/ConversationSidebar'
-import { useChatController } from '../../chat/useChatController'
+import { useChatController } from '../../Chat/useChatController'
 import { useDocumentViewerController } from '../../Viewer/useDocumentViewerController'
 import { useChatStore } from '../../store/chatStore'
 
