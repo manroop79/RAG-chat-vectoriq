@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import type { Citation, Message } from '../types'
 import { useAutoScroll } from '../utils/scroll'
 import { MessageBubble } from './MessageBubble'
@@ -15,6 +16,19 @@ export const MessageList = ({ messages, isLoading, onCitationClick }: MessageLis
     messages.length,
     isLoading,
     ])
+  const prefersReducedMotion = useReducedMotion()
+  const listVariants = {
+    hidden: { opacity: 0, y: 8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.04, delayChildren: 0.05 },
+    },
+  }
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+  }
 
   return (
     <div
@@ -26,21 +40,27 @@ export const MessageList = ({ messages, isLoading, onCitationClick }: MessageLis
       aria-busy={isLoading}
       className="relative flex-1 overflow-y-auto bg-slate-950/35 px-3 py-5"
     >
-      <div className="w-full space-y-4">
+      <motion.div
+        className="w-full space-y-4"
+        variants={listVariants}
+        initial={prefersReducedMotion ? false : 'hidden'}
+        animate={prefersReducedMotion ? false : 'visible'}
+      >
         {messages.map((message) => (
-          <div
+          <motion.div
             key={message.id}
+            variants={itemVariants}
             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <MessageBubble message={message} onCitationClick={onCitationClick} />
-          </div>
+          </motion.div>
         ))}
         {isLoading ? (
-          <div className="flex justify-start">
+          <motion.div variants={itemVariants} className="flex justify-start">
             <TypingIndicator />
-          </div>
+          </motion.div>
         ) : null}
-      </div>
+      </motion.div>
       {!isAtBottom && isScrollable ? (
         <div className="sticky bottom-4 flex justify-center pointer-events-none">
           <button

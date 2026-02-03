@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import type { Citation, Message } from '../types'
 import { MessageList } from './MessageList'
@@ -24,6 +25,19 @@ export const ChatPanel = ({
   const [draft, setDraft] = useState('')
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const isEmpty = messages.length === 0 && !isLoading
+  const prefersReducedMotion = useReducedMotion()
+  const introVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+    },
+  }
+  const introItem = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+  }
   const isSendDisabled = isLoading || draft.trim().length === 0
   const suggestions = [
     'What are the MFA requirements for privileged accounts?',
@@ -49,9 +63,17 @@ export const ChatPanel = ({
   return (
     <section className="flex h-full min-h-0 flex-1 flex-col border-t border-slate-800/70 bg-transparent lg:border-t-0">
       {isEmpty ? (
-        <div className="bg-slate-950/40 px-6 py-8">
-          <div className="max-w-2xl rounded-2xl border border-slate-800/70 bg-slate-950/60 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
-            <div className="flex items-start justify-between gap-6">
+        <motion.div
+          className="bg-slate-950/40 px-6 py-8"
+          variants={introVariants}
+          initial={prefersReducedMotion ? false : 'hidden'}
+          animate={prefersReducedMotion ? false : 'visible'}
+        >
+          <motion.div
+            className="max-w-2xl rounded-2xl border border-slate-800/70 bg-slate-950/60 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+            variants={introItem}
+          >
+            <motion.div className="flex items-start justify-between gap-6" variants={introItem}>
               <div className="space-y-2">
                 <p className="text-base font-semibold text-slate-100">
                   Ask me about internal documents
@@ -63,8 +85,8 @@ export const ChatPanel = ({
               <span className="rounded-full border border-amber-300/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-200">
                 RAG Assistant
               </span>
-            </div>
-            <div className="mt-4">
+            </motion.div>
+            <motion.div className="mt-4" variants={introItem}>
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 You can ask questions like:
               </p>
@@ -73,8 +95,8 @@ export const ChatPanel = ({
                 <li>“How do we handle security incidents?”</li>
                 <li>“What is the PTO policy?”</li>
               </ul>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
+            </motion.div>
+            <motion.div className="mt-4 flex flex-wrap gap-2" variants={introItem}>
               {suggestions.map((prompt) => (
                 <button
                   key={prompt}
@@ -88,9 +110,9 @@ export const ChatPanel = ({
                   {prompt}
                 </button>
               ))}
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       ) : null}
       <MessageList messages={messages} isLoading={isLoading} onCitationClick={onCitationClick} />
       {error ? (

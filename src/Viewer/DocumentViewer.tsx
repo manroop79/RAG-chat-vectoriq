@@ -63,8 +63,10 @@ export const DocumentViewer = ({
       aria-hidden={!isOpen}
       style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       initial={false}
-      animate={{ x: isOpen ? 0 : 420, opacity: isOpen ? 1 : 0 }}
-      transition={prefersReducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 220, damping: 28 }}
+      animate={{ x: isOpen ? 0 : '100%', opacity: isOpen ? 1 : 0 }}
+      transition={
+        prefersReducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 210, damping: 30 }
+      }
     >
       <div className="flex items-center justify-between border-b border-slate-800/70 px-5 py-4">
         <div>

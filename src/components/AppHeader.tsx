@@ -4,7 +4,7 @@ type AppHeaderProps = {
 
 export const AppHeader = ({ onMenuClick }: AppHeaderProps) => (
   <header className="border-b border-slate-800/70 bg-slate-950/90 px-6 py-4">
-    <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between">
+    <div className="flex w-full items-center justify-between">
       <div className="flex items-center gap-3">
         <button
           type="button"
