@@ -14,7 +14,7 @@ export const AppShell = () => {
   return (
     <div className="flex h-full min-h-[100svh] flex-col overflow-hidden bg-slate-950 text-slate-100">
       <AppHeader onMenuClick={() => setIsSidebarOpen(true)} />
-      <div className="flex min-h-0 flex-1 overflow-hidden px-4 lg:px-8">
+      <div className="flex min-h-0 flex-1 overflow-hidden px-4 pt-2 lg:px-8 lg:pt-4">
         {viewer.isOpen ? (
           <div
             className="fixed inset-0 z-10 hidden bg-slate-950/85 lg:block"

@@ -61,7 +61,11 @@ export const ChatPanel = ({
   }, [isLoading])
 
   return (
-    <section className="flex h-full min-h-0 flex-1 flex-col border-t border-slate-800/70 bg-transparent lg:border-t-0">
+    <section
+      className={`flex h-full min-h-0 flex-1 flex-col border-t border-slate-800/70 bg-transparent lg:border-t-0 ${
+        isEmpty ? 'overflow-y-auto' : 'overflow-hidden'
+      }`}
+    >
       {isEmpty ? (
         <motion.div
           className="bg-slate-950/40 px-6 py-8"
