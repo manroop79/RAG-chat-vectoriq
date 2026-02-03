@@ -100,7 +100,7 @@ export const ChatPanel = ({
                 <li>“What is the PTO policy?”</li>
               </ul>
             </motion.div>
-            <motion.div className="mt-3 flex flex-col gap-2" variants={introItem}>
+            <motion.div className="mt-3 flex flex-col gap-2 xl:mt-2" variants={introItem}>
               {suggestions.map((prompt) => (
                 <button
                   key={prompt}
@@ -109,7 +109,7 @@ export const ChatPanel = ({
                     setDraft(prompt)
                     inputRef.current?.focus()
                   }}
-                  className="w-full cursor-pointer rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-left text-[11px] text-slate-300 transition hover:border-cyan-400/60 hover:bg-cyan-500/10 hover:text-cyan-100 sm:text-xs"
+                  className="w-fit max-w-full cursor-pointer rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-left text-[11px] text-slate-300 transition hover:border-cyan-400/60 hover:bg-cyan-500/10 hover:text-cyan-100 xl:px-2.5 xl:text-[10px]"
                 >
                   {prompt}
                 </button>
